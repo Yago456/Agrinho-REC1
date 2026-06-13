@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AgroNotícias — Tecnologias Pós-Colheita</title>
+  <meta name="description" content="Blog de notícias sobre novas tecnologias para redução do desperdício pós-colheita - Agrinho 2026" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="#inicio" class="logo">Agro<span>Notícias</span></a>
+
+      <nav class="nav" id="mainNav" aria-label="Navegação principal">
+        <a href="#inicio">Início</a>
+        <a href="#destaques">Destaques</a>
+        <a href="#feed">Notícias</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contato</a>
+      </nav>
+
+      <div class="header-actions">
+        <button id="themeToggle" class="btn icon-btn" aria-pressed="false" aria-label="Alternar tema claro/escuro">🌙</button>
+        <button id="hamburger" class="hamburger" aria-label="Abrir menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO / DESTAQUE PRINCIPAL -->
+  <section id="inicio" class="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <span class="tag-pill">EM DESTAQUE</span>
+        <h1>Novas tecnologias prometem reduzir em até 35% o desperdício pós-colheita</h1>
+        <p>
+          Sensores IoT, embalagens inteligentes e atmosfera controlada estão transformando a forma como
+          o Brasil armazena, transporta e distribui alimentos — diminuindo perdas em toda a cadeia produtiva.
+        </p>
+        <div class="hero-actions">
+          <a href="#feed" class="btn primary">Ler todas as notícias</a>
+          <a href="#sobre" class="btn ghost">Sobre o projeto</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <canvas id="perdasChart" width="480" height="320" role="img" aria-label="Gráfico de perdas por etapa da cadeia"></canvas>
+        <small class="note">Perdas estimadas (%) por etapa da cadeia pós-colheita.</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESTAQUES -->
+  <section id="destaques" class="section">
+    <div class="container">
+      <h2 class="section-title">Destaques da semana</h2>
+      <div id="destaquesGrid" class="destaques-grid">
+        <!-- renderizado via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FEED DE NOTÍCIAS -->
+  <section id="feed" class="section alt">
+    <div class="container">
+      <div class="feed-header">
+        <h2 class="section-title">Feed de Notícias</h2>
+        <div class="filters">
+          <label for="filtroCategoria" class="sr-only">Filtrar por categoria</label>
+          <select id="filtroCategoria">
+            <option value="todas">Todas as categorias</option>
+            <option value="sensoriamento">Sensoriamento</option>
+            <option value="embalagem">Embalagem</option>
+            <option value="armazenamento">Armazenamento</option>
+            <option value="logistica">Logística</option>
+            <option value="digital">Digital</option>
+          </select>
+          <input id="busca" type="search" placeholder="Buscar notícia (ex.: IoT, blockchain, frio)" />
+        </div>
+      </div>
+
+      <div id="cards" class="cards">
+        <!-- Cards renderizados via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- SIMULADOR -->
+  <section class="section">
+    <div class="container grid-2">
+      <div>
+        <h2 class="section-title">Impacto esperado</h2>
+        <ul class="impact-list">
+          <li><strong>Qualidade</strong>: maior vida de prateleira e melhor aparência do produto.</li>
+          <li><strong>Renda</strong>: redução de perdas aumenta o volume comercializável.</li>
+          <li><strong>Sustentabilidade</strong>: menos emissões de GEE e uso eficiente de recursos.</li>
+          <li><strong>Rastreabilidade</strong>: confiança do consumidor e acesso a mercados exigentes.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Simulação: potencial de redução</h3>
+        <p>Ajuste os controles para estimar perdas e economia em um lote.</p>
+        <div class="simulador">
+          <label>Produção do lote (kg)
+            <input type="number" id="loteKg" min="100" max="100000" value="10000">
+          </label>
+          <label>Perdas atuais (%)
+            <input type="range" id="perdaAtual" min="5" max="40" value="20">
+            <span id="perdaAtualOut">20%</span>
+          </label>
+          <label>Efetividade da tecnologia (% de redução relativa)
+            <input type="range" id="efetividade" min="5" max="70" value="35">
+            <span id="efetividadeOut">35%</span>
+          </label>
+          <div class="sim-result" aria-live="polite">
+            <p><strong>Perda atual:</strong> <span id="kgPerdaAtual">2000</span> kg</p>
+            <p><strong>Perda após tecnologia:</strong> <span id="kgPerdaNova">1300</span> kg</p>
+            <p><strong>Economia estimada:</strong> <span id="kgEconomia">700</span> kg</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section id="sobre" class="section alt">
+    <div class="container">
+      <h2 class="section-title">Sobre o projeto</h2>
+      <p>
+        O AgroNotícias é um blog informativo criado para o Programa Agrinho 2026, reunindo notícias
+        e novidades sobre tecnologias que ajudam a reduzir o desperdício de alimentos na etapa
+        pós-colheita — da fazenda até a mesa do consumidor.
+      </p>
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-dot"></div>
+          <h4>Diagnóstico (Semanas 1–2)</h4>
+          <p>Mapeamento das etapas críticas, medição de perdas e definição de metas.</p>
+        </div>
+        <div class="t-item">
+          <div class="t-dot"></div>
+          <h4>Piloto (Meses 1–2)</h4>
+          <p>Teste com sensores de temperatura/umidade e embalagens melhoradas.</p>
+        </div>
+        <div class="t-item">
+          <div class="t-dot"></div>
+          <h4>Escala (Meses 3–6)</h4>
+          <p>Integração com rastreabilidade digital e logística refrigerada.</p>
+        </div>
+        <div class="t-item">
+          <div class="t-dot"></div>
+          <h4>Otimização contínua</h4>
+          <p>Análise de dados, manutenção preventiva e capacitação da equipe.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section id="contato" class="section">
+    <div class="container">
+      <h2 class="section-title">Fale conosco</h2>
+      <p>Dúvidas, sugestões ou parcerias? Envie sua mensagem.</p>
+      <form id="contatoForm" novalidate>
+        <div class="form-grid">
+          <label>Nome
+            <input type="text" name="nome" required placeholder="Seu nome completo">
+          </label>
+          <label>E-mail
+            <input type="email" name="email" required placeholder="voce@email.com">
+          </label>
+          <label>Assunto
+            <input type="text" name="assunto" required placeholder="Ex.: Parceria de piloto">
+          </label>
+          <label>Mensagem
+            <textarea name="mensagem" rows="4" required placeholder="Conte-nos seu objetivo"></textarea>
+          </label>
+        </div>
+        <div class="form-actions">
+          <button class="btn primary" type="submit">Enviar</button>
+          <span id="formStatus" class="status" role="status" aria-live="polite"></span>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container foot-flex">
+      <p>&copy; <span id="year"></span> AgroNotícias — Trabalho Agrinho 2026 - Yago (3º ano)</p>
+      <a href="#inicio" class="to-top" aria-label="Voltar ao topo">↑ Topo</a>
+    </div>
+  </footer>
+
+  <!-- MODAL DE NOTÍCIA -->
+  <div class="modal" id="modal">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="closeModal" aria-label="Fechar">✕</button>
+      <span class="badge" id="modalBadge"></span>
+      <h3 id="modalTitle"></h3>
+      <p id="modalText"></p>
+      <small class="note" id="modalDetail"></small>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
